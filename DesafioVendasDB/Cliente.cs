@@ -15,7 +15,14 @@ namespace DesafioGaragemDB
         private string nomeCliente;
         private string telefone;
         private string email;
-
+        /// <summary>
+        /// Método construtor da classe Cliente.
+        /// </summary>
+        /// <param name="idCliente">O Id do cliente, de tipo string.</param>
+        /// <param name="cpf">O CPF do cliente, de tipo string.</param>
+        /// <param name="nomeCliente">O Nome do cliente, de tipo string.</param>
+        /// <param name="telefone">O telefone do cliente, de tipo string.</param>
+        /// <param name="email">O e-mail do cliente, de tipo string.</param>
         public Cliente(int idCliente, string cpf, string nomeCliente, string telefone, string email)
         {
             this.idCliente = idCliente;
@@ -24,7 +31,13 @@ namespace DesafioGaragemDB
             this.telefone = telefone;
             this.email = email;
         }
-
+        /// <summary>
+        /// Método construtor da classe Cliente.
+        /// </summary>
+        /// <param name="cpf">O CPF do cliente, de tipo string.</param>
+        /// <param name="nomeCliente">O Nome do cliente, de tipo string.</param>
+        /// <param name="telefone">O telefone do cliente, de tipo string.</param>
+        /// <param name="email">O e-mail do cliente, de tipo string.</param>
         public Cliente(string cpf, string nomeCliente, string telefone, string email)
         {
             this.cpf = cpf;
@@ -32,13 +45,18 @@ namespace DesafioGaragemDB
             this.telefone = telefone;
             this.email = email;
         }
-
+        /// <summary>
+        /// Métodos getters e setters da classe Cliente.
+        /// </summary>
         public int IdCliente { get => idCliente; set => idCliente = value; }
         public string Cpf { get => cpf; set => cpf = value; }
         public string NomeCliente { get => nomeCliente; set => nomeCliente = value; }
         public string Telefone { get => telefone; set => telefone = value; }
         public string Email { get => email; set => email = value; }
-
+        /// <summary>
+        /// Método público para gravar o Cliente no banco de dados.
+        /// </summary>
+        /// <returns>Retorna verdadeiro quando a Query é executada com sucesso.</returns>
         public bool gravarCliente()
         {
             Banco banco = new Banco();
@@ -73,7 +91,12 @@ namespace DesafioGaragemDB
                 banco.fecharConexao();
             }
         }
-        public static bool deletarUsuario(int idCliente)
+        /// <summary>
+        /// Método público e estático para deleter o Cliente do banco de dados.
+        /// </summary>
+        /// <param name="idCliente">O Id do cliente que será deletado, de tipo inteiro.</param>
+        /// <returns>Retorna verdadeiro quando a Query é executada com sucesso.</returns>
+        public static bool deletarCliente(int idCliente)
         {
             Banco banco = new Banco();
             SqlConnection cn = banco.abrirConexao();

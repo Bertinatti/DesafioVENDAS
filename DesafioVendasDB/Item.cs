@@ -17,7 +17,14 @@ namespace DesafioGaragemDB
         private decimal valorUnitario;
         private int quantidade;
         private decimal valorTotal;
-
+        /// <summary>
+        /// Método construtor da classe Item.
+        /// </summary>
+        /// <param name="idVenda">O Id da venda realizada, de tipo inteiro.</param>
+        /// <param name="idProduto">O Id do produto vendido, de tipo inteiro.</param>
+        /// <param name="valorUnitario">O valor unitário do produto vendido, de tipo decimal.</param>
+        /// <param name="quantidade">A quantidade de produtos vendidos, de tipo inteiro.</param>
+        /// <param name="valorTotal">O valor total da venda realizada, de tipo decimal.</param>
         public Item(int idVenda, int idProduto, decimal valorUnitario, int quantidade, decimal valorTotal)
         {
             this.idVenda = idVenda;
@@ -26,7 +33,15 @@ namespace DesafioGaragemDB
             this.quantidade = quantidade;
             this.valorTotal = valorTotal;
         }
-
+        /// <summary>
+        /// Método construtor da classe Item.
+        /// </summary>
+        /// <param name="idItemVenda">O Id do item vendido, de tipo inteiro.</param>
+        /// <param name="idVenda">O Id da venda realizada, de tipo inteiro.</param>
+        /// <param name="idProduto">O Id do produto vendido, de tipo inteiro.</param>
+        /// <param name="valorUnitario">O valor unitário do produto vendido, de tipo decimal.</param>
+        /// <param name="quantidade">A quantidade de produtos vendidos, de tipo inteiro.</param>
+        /// <param name="valorTotal">O valor total da venda realizada, de tipo decimal.</param>
         public Item(int idItemVenda, int idVenda, int idProduto, decimal valorUnitario, int quantidade, decimal valorTotal)
         {
             this.idItemVenda = idItemVenda;
@@ -36,7 +51,14 @@ namespace DesafioGaragemDB
             this.quantidade = quantidade;
             this.valorTotal = valorTotal;
         }
-
+        /// <summary>
+        /// Método construtor da classe Item.
+        /// </summary>
+        /// <param name="idProduto">O Id do produto vendido, de tipo inteiro.</param>
+        /// <param name="nomeProduto">O nome do produto vendido, de tipo string.</param>
+        /// <param name="valorUnitario">O valor unitário do produto vendido, de tipo decimal.</param>
+        /// <param name="quantidade">A quantidade de produtos vendidos, de tipo inteiro.</param>
+        /// <param name="valorTotal">O valor total da venda realizada, de tipo decimal.</param>
         public Item(int idProduto, string nomeProduto, decimal valorUnitario, int quantidade, decimal valorTotal)
         {
             this.idProduto = idProduto;
@@ -45,7 +67,9 @@ namespace DesafioGaragemDB
             this.quantidade = quantidade;
             this.valorTotal = valorTotal;
         }
-
+        /// <summary>
+        /// Métodos getters e setters da classe Item.
+        /// </summary>
         public int IdItemVenda { get => idItemVenda; set => idItemVenda = value; }
         public int IdVenda { get => idVenda; set => idVenda = value; }
         public int IdProduto { get => idProduto; set => idProduto = value; }
@@ -53,7 +77,10 @@ namespace DesafioGaragemDB
         public decimal ValorUnitario { get => valorUnitario; set => valorUnitario = value; }
         public int Quantidade { get => quantidade; set => quantidade = value; }
         public decimal ValorTotal { get => valorTotal; set => valorTotal = value; }
-
+        /// <summary>
+        /// Método público para gravar os dados no banco de dados.
+        /// </summary>
+        /// <returns>Retorna verdadeiro quando a Query é executada com sucesso.</returns>
         public bool gravarItem()
         {
             Banco banco = new Banco();
@@ -90,7 +117,12 @@ namespace DesafioGaragemDB
                 banco.fecharConexao();
             }
         }
-        public static bool deletarProduto(int idVenda)
+        /// <summary>
+        /// Método público e estático para deleter 
+        /// </summary>
+        /// <param name="idItemVenda">O Id do Item da venda, de tipo inteiro.</param>
+        /// <returns>Retorna verdadeiro quando a Query é executada com sucesso.</returns>
+        public static bool deletarItem(int idItemVenda)
         {
             Banco banco = new Banco();
             SqlConnection cn = banco.abrirConexao();
@@ -99,9 +131,9 @@ namespace DesafioGaragemDB
             command.Connection = cn;
             command.Transaction = tran;
             command.CommandType = CommandType.Text;
-            command.CommandText = "DELETE FROM venda WHERE id_venda = @id_venda;";
-            command.Parameters.Add("@id_venda", SqlDbType.Int);
-            command.Parameters[0].Value = idVenda;
+            command.CommandText = "DELETE FROM item_venda WHERE id_item_venvenda = @id_item_venda;";
+            command.Parameters.Add("@id_item_venda", SqlDbType.Int);
+            command.Parameters[0].Value = idItemVenda;
             try
             {
                 command.ExecuteNonQuery();

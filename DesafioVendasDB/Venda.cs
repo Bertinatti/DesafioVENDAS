@@ -13,24 +13,38 @@ namespace DesafioGaragemDB
         private int idVenda;
         private int idCliente;
         private decimal valorTotal;
-
+        /// <summary>
+        /// Método construtor da classe Venda.
+        /// </summary>
+        /// <param name="idCliente">O Id do cliente, de tipo inteiro.</param>
+        /// <param name="valorTotal">O valor total da venda, de tipo decimal.</param>
         public Venda(int idCliente, decimal valorTotal)
         {
             this.idCliente = idCliente;
             this.valorTotal = valorTotal;
         }
-
+        /// <summary>
+        /// Método construtor da classe Venda.
+        /// </summary>
+        /// <param name="idVenda">O Id da venda, de tipo inteiro.</param>
+        /// <param name="idCliente">O Id do cliente, de tipo inteiro.</param>
+        /// <param name="valorTotal">O valor total da venda, de tipo decimal.</param>
         public Venda(int idVenda, int idCliente, decimal valorTotal)
         {
             this.idVenda = idVenda;
             this.idCliente = idCliente;
             this.valorTotal = valorTotal;
         }
-
+        /// <summary>
+        /// Métodos getters e setters da classe Venda.
+        /// </summary>
         public int IdVenda { get => idVenda; set => idVenda = value; }
         public int IdCliente { get => idCliente; set => idCliente = value; }
         public decimal ValorTotal { get => valorTotal; set => valorTotal = value; }
-
+        /// <summary>
+        /// Método público para gravar a Venda no banco de dados.
+        /// </summary>
+        /// <returns>Retorna verdadeiro quando a Query é executada com sucesso.</returns>
         public bool gravarVenda()
         {
             Banco banco = new Banco();
@@ -61,6 +75,11 @@ namespace DesafioGaragemDB
                 banco.fecharConexao();
             }
         }
+        /// <summary>
+        /// Método público e estático para deleter a Venda do banco de dados.
+        /// </summary>
+        /// <param name="idVenda">O Id da venda, de tipo inteiro.</param>
+        /// <returns>Retorna verdadeiro quando a Query é executada com sucesso.</returns>
         public static bool deletarVenda(int idVenda)
         {
             Banco banco = new Banco();
@@ -89,6 +108,9 @@ namespace DesafioGaragemDB
                 banco.fecharConexao();
             }
         }
+        /// <summary>
+        /// Método público para retorna o valor do Id da venda que foi realizada por último.
+        /// </summary>
         public void buscarIdVenda()
         {
             int id_venda = -1;

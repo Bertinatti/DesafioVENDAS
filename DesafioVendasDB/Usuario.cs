@@ -15,7 +15,13 @@ namespace DesafioGaragemDB
         private string senha;
         private string nomeUsuario;
         private int tipoUsuario;
-
+        /// <summary>
+        /// Método construtor da classe Usuário.
+        /// </summary>
+        /// <param name="login">O login do sistema, de tipo string.</param>
+        /// <param name="senha">A senha do sistema, de tipo string.</param>
+        /// <param name="nomeUsuario">O nome do usuário do sistema, de tipo string.</param>
+        /// <param name="tipoUsuario">O tipo de usuário, de tipo inteiro.</param>
         public Usuario(string login, string senha, string nomeUsuario, int tipoUsuario)
         {
             this.login = login;
@@ -23,7 +29,14 @@ namespace DesafioGaragemDB
             this.nomeUsuario = nomeUsuario;
             this.tipoUsuario = tipoUsuario;
         }
-
+        /// <summary>
+        /// Método construtor da classe Usuário.
+        /// </summary>
+        /// <param name="idUsuario">O Id do usuário do sistema, de tipo inteiro.</param>
+        /// <param name="login">O login do sistema, de tipo string.</param>
+        /// <param name="senha">A senha do sistema, de tipo string.</param>
+        /// <param name="nomeUsuario">O nome do usuário do sistema, de tipo string.</param>
+        /// <param name="tipoUsuario">O tipo de usuário, de tipo inteiro.</param>
         public Usuario(int idUsuario, string login, string senha, string nomeUsuario, int tipoUsuario)
         {
             this.idUsuario = idUsuario;
@@ -32,19 +45,28 @@ namespace DesafioGaragemDB
             this.nomeUsuario = nomeUsuario;
             this.tipoUsuario = tipoUsuario;
         }
+        /// <summary>
+        /// Método privado que gera um login automático para o Usuário.
+        /// </summary>
+        /// <param name="nomeCompleto">Parâmetro contendo o nome do usuário do sistema, que será usado para gerar o login.</param>
         private void gerarLogin(string nomeCompleto)
         {
             string[] loginSplit = nomeCompleto.ToLower().Split(' ');
             string login = loginSplit[0] + "." + loginSplit[loginSplit.Length - 1];
             this.login = login;
         }
-
+        /// <summary>
+        /// Métodos getters e setters da classe Usuário.
+        /// </summary>
         public int IdUsuario { get => idUsuario; set => idUsuario = value; }
         public string Login { get => login; set => login = value; }
         public string Senha { get => senha; set => senha = value; }
         public string NomeUsuario { get => nomeUsuario; set => nomeUsuario = value; }
         public int TipoUsuario { get => tipoUsuario; set => tipoUsuario = value; }
-
+        /// <summary>
+        /// Método para gravar o Usuário no banco de dados.
+        /// </summary>
+        /// <returns>Retorna verdadeiro quando a Query é executada com sucesso.</returns>
         public bool gravarUsuario()
         {
             Banco banco = new Banco();
@@ -79,6 +101,11 @@ namespace DesafioGaragemDB
                 banco.fecharConexao();
             }
         }
+        /// <summary>
+        /// Método para deleter o Usuário do banco de dados. 
+        /// </summary>
+        /// <param name="idUsuario">O Id do usuário que será deletado, de tipo inteiro.</param>
+        /// <returns>Retorna verdadeiro quando a Query é executada com sucesso.</returns>
         public static bool deletarUsuario(int idUsuario)
         {
             Banco banco = new Banco();
@@ -107,6 +134,12 @@ namespace DesafioGaragemDB
                 banco.fecharConexao();
             }
         }
+        /// <summary>
+        /// Método público e estático para verificar o login.
+        /// </summary>
+        /// <param name="login">Parâmetro que recebe o valor do login, de tipo string.</param>
+        /// <param name="senha">Parâmetro que recebe o valor da senha, de tipo string.</param>
+        /// <returns>Retorna o nível do Usuário do sistema, de tipo inteiro.</returns>
         public static int efetuarLogin(string login, string senha)
         {
             int tipoUsuario = -1;

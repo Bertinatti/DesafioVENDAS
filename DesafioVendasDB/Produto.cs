@@ -15,7 +15,14 @@ namespace DesafioGaragemDB
         private string nomeProduto;
         private decimal preco;
         private int estoque;
-
+        /// <summary>
+        /// Método construtor da classe Produto.
+        /// </summary>
+        /// <param name="idProduto">A chave-primária, de tipo inteiro, da tabela produto </param>
+        /// <param name="codigoBarras">O código de barras do produto, de tipo string.</param>
+        /// <param name="nomeProduto">O nome do produto, de tipo string.</param>
+        /// <param name="preco">O preço do produto, de tipo decimal.</param>
+        /// <param name="estoque">O estoque ou quantidade em estoque do produto, de tipo inteiro.</param>
         public Produto(int idProduto, string codigoBarras, string nomeProduto, decimal preco, int estoque)
         {
             this.idProduto = idProduto;
@@ -24,7 +31,13 @@ namespace DesafioGaragemDB
             this.preco = preco;
             this.estoque = estoque;
         }
-
+        /// <summary>
+        /// Método construtor da classe Produto.
+        /// </summary>
+        /// <param name="codigoBarras">O código de barras do produto, de tipo string.</param>
+        /// <param name="nomeProduto">O nome do produto, de tipo string.</param>
+        /// <param name="preco">O preço do produto, de tipo decimal.</param>
+        /// <param name="estoque">O estoque ou quantidade em estoque do produto, de tipo inteiro.</param>
         public Produto(string codigoBarras, string nomeProduto, decimal preco, int estoque)
         {
             this.codigoBarras = codigoBarras;
@@ -32,12 +45,18 @@ namespace DesafioGaragemDB
             this.preco = preco;
             this.estoque = estoque;
         }
-
+        /// <summary>
+        /// Métodos getters e setters da classe Produto.
+        /// </summary>
         public int IdProduto { get => idProduto; set => idProduto = value; }
         public string CodigoBarras { get => codigoBarras; set => codigoBarras = value; }
         public string NomeProduto { get => nomeProduto; set => nomeProduto = value; }
         public decimal Preco { get => preco; set => preco = value; }
         public int Estoque { get => estoque; set => estoque = value; }
+        /// <summary>
+        /// Método público para gravar o objeto no banco de dados.
+        /// </summary>
+        /// <returns>Retorna verdadeiro quando a Query é executada com sucesso.</returns>
         public bool gravarProduto()
         {
             Banco banco = new Banco();
@@ -72,6 +91,11 @@ namespace DesafioGaragemDB
                 banco.fecharConexao();
             }
         }
+        /// <summary>
+        /// Método público e estático para deleter o objeto da classe Produto salva no banco de dados.
+        /// </summary>
+        /// <param name="idProduto">Parâmetro que será usado para "capturar" a linha que será deletada do banco.</param>
+        /// <returns>Retorna verdadeiro quando a Query é executada com sucesso.</returns>
         public static bool deletarProduto(int idProduto)
         {
             Banco banco = new Banco();
@@ -100,6 +124,12 @@ namespace DesafioGaragemDB
                 banco.fecharConexao();
             }
         }
+        /// <summary>
+        /// Método público e estático para verificar se há estoque suficiente para efetuar a venda.
+        /// </summary>
+        /// <param name="idProduto">O Id do produto que está salvo no banco, de tipo inteiro.</param>
+        /// <param name="quantidade">A quantidade de produtos que estão sendo solicitados, de tipo inteiro.</param>
+        /// <returns>Retorna verdadeiro quando a Query é executada com sucesso.</returns>
         public static bool verificaEstoque(int idProduto, int quantidade)
         {
             int estoque = -1;
@@ -129,6 +159,12 @@ namespace DesafioGaragemDB
                 return false;
             }
         }
+        /// <summary>
+        /// Método público e estático para realizar o decréscimo do estoque de determinado Produto. 
+        /// </summary>
+        /// <param name="idProduto">O id do produto que está salvo no bnaco, de tipo inteiro.</param>
+        /// <param name="quantidade">A quantidade do produto que será retirado do estoque, de tipo inteiro.</param>
+        /// <returns></returns>
         public static bool darBaixaEstoque(int idProduto, int quantidade)
         {
             Banco banco = new Banco();
